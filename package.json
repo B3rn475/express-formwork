@@ -1,0 +1,29 @@
+{
+  "name": "express-formwork",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [
+    "express",
+    "validation"
+  ],
+  "homepage": "https://github.com/B3rn475/express-formwork",
+  "author": {
+    "name": "Carlo BERNASCHINA",
+    "url": "http://www.bernaschina.com/"
+  },
+  "licenses": {
+    "type": "MIT",
+    "url": "http://github.com/B3rn475/express-formwork/raw/master/LICENSE"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/B3rn475/express-formwork.git"
+  },
+  "dependencies": {
+    "validator": "^3.22.1"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "main": "index.js"
+}
