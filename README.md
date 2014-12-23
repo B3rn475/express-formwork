@@ -6,7 +6,7 @@ __express-formwork__ is a completely asynchronous form validator and sanitizer f
 ### Installation
 
 ```bash
-$ npm install express
+$ npm install express-formwork
 ```
 
 Validator
