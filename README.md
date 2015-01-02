@@ -1,6 +1,8 @@
 express-formwork
 ===
 
+  [![NPM Version][npm-image]][npm-url]
+
 __express-formwork__ is a completely asynchronous form validator and sanitizer for [express](https://github.com/strongloop/express) based on [validator](https://github.com/chriso/validator.js)
 
 ### Installation
@@ -176,3 +178,6 @@ The predefined sanitiers are:
  - **normalizeEmail([options])** - canonicalize an email address. `options` is an object which defaults to `{ lowercase: true }`. With `lowercase` set to `true`, the local part of the email address is lowercased for all domains; the hostname is always lowercased and the local part of the email address is always lowercased for hosts that are known to be case-insensitive (currently only GMail). Normalization follows special rules for known providers: currently, GMail addresses have dots removed in the local part and are stripped of tags (e.g. `some.one+tag@gmail.com` becomes `someone@gmail.com`) and all `@googlemail.com` addresses are normalized to `@gmail.com`.
 
 For further informations on the predefined sanitizers see [validator](https://github.com/chriso/validator.js)
+
+[npm-image]: https://img.shields.io/npm/v/express-formwork.svg?style=flat
+[npm-url]: https://npmjs.org/package/express-formwork
