@@ -56,11 +56,14 @@ __examples__
 ```js
     var field = require('express-formwork').field;
 
-    var field1 = field(name1, 'body'); // same as field.body(name1)
-    var field2 = field(name2, 'query'); // same as field.query(name2)
-    var field3 = field(name3, 'params'); // same as field.params(name3)
-    var field4 = field(name4, ['body', 'query', 'params']); // same as field.any(name4)
-    var field5 = field(name5, ['query', 'body']);
+    var field1 = field(name1, 'body');
+    var field2 = field(name2, 'query');
+    var field3 = field(name3, 'params');
+    var field4 = field(name4, ['body']); // same as field.body(name1)
+    var field5 = field(name5, ['query']); // same as field.query(name2)
+    var field6 = field(name6, ['params']); // same as field.params(name3)
+    var field7 = field(name7, ['body', 'query', 'params']); // same as field.any(name4)
+    var field8 = field(name8, ['query', 'body']);
 ```
 
 Operations

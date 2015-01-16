@@ -195,17 +195,45 @@ describe('field', function () {
             };
         }
         function createResponse() {return {}; }
-        it('should respect required()', function () {
-            var req = createRequest(),
-                res = createResponse(),
-                done;
-            field("name", ['params']).required('name is required').toMiddleware()(req, res, function (err) {
-                assert.equal(err, undefined);
-                assert.equal(req.formwork.isValid, false);
-                assert.equal(req.formwork.any.name.error, 'name is required');
-                done = true;
+        describe('required', function () {
+            it('should accept a string or nothing', function () {
+                var req = createRequest(),
+                    res = createResponse(),
+                    done = 0;
+                assert.doesNotThrow(function () {field("name", ['body']).required(); });
+                assert.doesNotThrow(function () {field("name", ['body']).required(undefined); });
+                assert.throws(function () {field("name", ['body']).required(null); });
+                assert.throws(function () {field("name", ['body']).required(true); });
+                assert.throws(function () {field("name", ['body']).required(0); });
+                assert.doesNotThrow(function () {field("name", ['body']).required("string"); });
+                assert.throws(function () {field("name", ['body']).required([]); });
+                assert.throws(function () {field("name", ['body']).required({}); });
+                assert.throws(function () {field("name", ['body']).required(function () {}); });
             });
-            assert.equal(done, true);
+            it('should give error if not present', function () {
+                var req = createRequest(),
+                    res = createResponse(),
+                    done;
+                field("name", ['params']).required('name is required').toMiddleware()(req, res, function (err) {
+                    assert.equal(err, undefined);
+                    assert.equal(req.formwork.isValid, false);
+                    assert.equal(req.formwork.any.name.error, 'name is required');
+                    done = true;
+                });
+                assert.equal(done, true);
+            });
+            it('should not give error if present', function () {
+                var req = createRequest(),
+                    res = createResponse(),
+                    done;
+                field("name", ['body']).required('name is required').toMiddleware()(req, res, function (err) {
+                    assert.equal(err, undefined);
+                    assert.equal(req.formwork.isValid, true);
+                    assert.equal(req.formwork.any.name.error, undefined);
+                    done = true;
+                });
+                assert.equal(done, true);
+            });
         });
         it('should respect optional()', function () {
             var req = createRequest(),
@@ -220,6 +248,22 @@ describe('field', function () {
             assert.equal(done, true);
         });
         describe('validate', function () {
+            it('should accept only a function with at least 2 parameters', function () {
+                var req = createRequest(),
+                    res = createResponse(),
+                    done = 0;
+                assert.throws(function () {field("name", ['body']).validate(); });
+                assert.throws(function () {field("name", ['body']).validate(undefined); });
+                assert.throws(function () {field("name", ['body']).validate(null); });
+                assert.throws(function () {field("name", ['body']).validate(true); });
+                assert.throws(function () {field("name", ['body']).validate(0); });
+                assert.throws(function () {field("name", ['body']).validate("string"); });
+                assert.throws(function () {field("name", ['body']).validate([]); });
+                assert.throws(function () {field("name", ['body']).validate({}); });
+                assert.throws(function () {field("name", ['body']).validate(function () {}); });
+                assert.throws(function () {field("name", ['body']).validate(function (var1) {}); });
+                assert.doesNotThrow(function () {field("name", ['body']).validate(function (var1, var2) {}); });
+            });
             it('should forward true', function () {
                 var req = createRequest(),
                     res = createResponse(),
@@ -265,18 +309,34 @@ describe('field', function () {
                 assert.equal(done, 2);
             });
         });
-        describe('validate', function () {
+        describe('sanitize', function () {
+            it('should accept only a function with at least 2 parameters', function () {
+                var req = createRequest(),
+                    res = createResponse(),
+                    done = 0;
+                assert.throws(function () {field("name", ['body']).sanitize(); });
+                assert.throws(function () {field("name", ['body']).sanitize(undefined); });
+                assert.throws(function () {field("name", ['body']).sanitize(null); });
+                assert.throws(function () {field("name", ['body']).sanitize(true); });
+                assert.throws(function () {field("name", ['body']).sanitize(0); });
+                assert.throws(function () {field("name", ['body']).sanitize("string"); });
+                assert.throws(function () {field("name", ['body']).sanitize([]); });
+                assert.throws(function () {field("name", ['body']).sanitize({}); });
+                assert.throws(function () {field("name", ['body']).sanitize(function () {}); });
+                assert.throws(function () {field("name", ['body']).sanitize(function (var1) {}); });
+                assert.doesNotThrow(function () {field("name", ['body']).sanitize(function (var1, var2) {}); });
+            });
             it('should forward value', function () {
                 var req = createRequest(),
                     res = createResponse(),
                     done = 0;
-                field("name", ['body']).sanitize(function (str, next) {
+                field("name", 'query').sanitize(function (str, next) {
                     done += 1;
                     next(undefined, "sanitized");
                 }).toMiddleware()(req, res, function (err) {
                     assert.equal(err, undefined);
                     assert.equal(req.formwork.isValid, true);
-                    assert.equal(req.formwork.any.name.value, "sanitized");
+                    assert.equal(req.formwork.query.name.value, "sanitized");
                     done += 1;
                 });
                 assert.equal(done, 2);
@@ -285,7 +345,7 @@ describe('field', function () {
                 var req = createRequest(),
                     res = createResponse(),
                     done = 0;
-                field("name", ['body']).sanitize(function (value, next) {
+                field("name", ['query', 'params']).sanitize(function (value, next) {
                     done += 1;
                     next("internal error");
                 }).toMiddleware()(req, res, function (err) {
@@ -294,6 +354,20 @@ describe('field', function () {
                 });
                 assert.equal(done, 2);
             });
+        });
+    });
+    describe('shortcuts', function () {
+        it('body', function () {
+            assert.equal(field.body("name") instanceof field, true);
+        });
+        it('query', function () {
+            assert.equal(field.query("name") instanceof field, true);
+        });
+        it('params', function () {
+            assert.equal(field.params("name") instanceof field, true);
+        });
+        it('any', function () {
+            assert.equal(field.any("name") instanceof field, true);
         });
     });
 });

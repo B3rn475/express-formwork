@@ -38,4 +38,53 @@ describe('validator', function () {
         validator(field1);
         validator(field1, field2);
     });
+    it('should create the structure', function () {
+        var req = {},
+            res = {},
+            done = false;
+        validator()(req, res, function (err) {
+            assert.equal(err, undefined);
+            assert.equal(typeof req.formwork === 'object', true);
+            assert.equal(typeof req.formwork.query === 'object', true);
+            assert.equal(typeof req.formwork.body === 'object', true);
+            assert.equal(typeof req.formwork.params === 'object', true);
+            assert.equal(typeof req.formwork.any === 'object', true);
+            done = true;
+        });
+        assert.equal(done, true);
+    });
+    it('should preserve structure', function () {
+        var query = {}, body = {}, params = {}, any = {},
+            formwork = {
+                query: query,
+                body: body,
+                params: params,
+                any: any
+            },
+            req = {formwork: formwork},
+            res = {},
+            done = false;
+        validator()(req, res, function (err) {
+            assert.equal(err, undefined);
+            assert.equal(req.formwork, formwork);
+            assert.equal(req.formwork.query, query);
+            assert.equal(req.formwork.body, body);
+            assert.equal(req.formwork.params, params);
+            assert.equal(req.formwork.any, any);
+            done = true;
+        });
+        assert.equal(done, true);
+    });
+    it('should forward error', function () {
+        var req = {},
+            res = {},
+            done = false;
+        validator(
+            field.body('name').validate(function (str, done) { done("internal error"); })
+        )(req, res, function (err) {
+            assert.equal(err, "internal error");
+            done = true;
+        });
+        assert.equal(done, true);
+    });
 });
