@@ -3,6 +3,7 @@ express-formwork
 
   [![NPM Version][npm-image]][npm-url]
   [![Build Status][travis-image]][travis-url]
+  [![Coverage Status][coveralls-image]][coverlalls-url]
 
 __express-formwork__ is a completely asynchronous form validator and sanitizer for [express](https://github.com/strongloop/express) based on [validator](https://github.com/chriso/validator.js)
 
@@ -187,3 +188,5 @@ For further informations on the predefined sanitizers see [validator](https://gi
 [npm-url]: https://npmjs.org/package/express-formwork
 [travis-image]: https://travis-ci.org/B3rn475/express-formwork.svg
 [travis-url]: https://travis-ci.org/B3rn475/express-formwork
+[coveralls-image]: https://coveralls.io/repos/B3rn475/express-formwork/badge.svg
+[coveralls-url]: https://coveralls.io/r/B3rn475/express-formwork
