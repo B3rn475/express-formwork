@@ -1,6 +1,6 @@
 {
   "name": "express-formwork",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "",
   "keywords": [
     "express",
@@ -20,10 +20,17 @@
     "url": "http://github.com/B3rn475/express-formwork.git"
   },
   "dependencies": {
-    "validator": "^3.22.1"
+    "validator": "^3.27.0"
+  },
+  "devDependencies": {
+    "async": "^0.9.0",
+    "mocha": "^2.1.0"
   },
   "engines": {
     "node": ">=0.8.0"
+  },
+  "scripts": {
+    "test": "mocha"
   },
   "main": "index.js"
 }
