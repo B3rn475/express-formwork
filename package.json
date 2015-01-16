@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "async": "^0.9.0",
-    "mocha": "^2.1.0"
+    "mocha": "latest"
   },
   "engines": {
     "node": ">=0.8.0"
