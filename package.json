@@ -1,6 +1,6 @@
 {
   "name": "express-formwork",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "keywords": [
     "express",
@@ -24,7 +24,9 @@
   },
   "devDependencies": {
     "async": "^0.9.0",
-    "mocha": "latest"
+    "mocha": "latest",
+    "istanbul": "latest",
+    "coveralls": "latest"
   },
   "engines": {
     "node": ">=0.10.0"
