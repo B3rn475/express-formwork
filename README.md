@@ -113,7 +113,7 @@ The predefined validators are:
 
  - **equals(comparison, error)** - check if the string matches the comparison.
  - **contains(seed, error)** - check if the string contains the seed.
- - **matches(pattern [, modifiers], error)** - check if string matches the pattern. Either `matches('foo', /foo/i)` or `matches('foo', 'foo', 'i')`.
+ - **matches(pattern [, modifiers], error)** - check if string matches the pattern. Either `matches(/foo/i, error)` or `matches('foo', 'i', error)`.
  - **isEmail(error)** - check if the string is an email.
  - **isURL([options], error)** - check if the string is an URL. `options` is an object which defaults to `{ protocols: ['http','https','ftp'], require_tld: true, require_protocol: false, allow_underscores: false, host_whitelist: false, host_blacklist: false, allow_trailing_dot: false }`.
  - **isFQDN([options], error)** - check if the string is a fully qualified domain name (e.g. domain.com). `options` is an object which defaults to `{ require_tld: true, allow_underscores: false, allow_trailing_dot: false }`.
