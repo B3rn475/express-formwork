@@ -111,13 +111,13 @@ Parameters:
  
 The predefined validators are:
 
- - **equals(comparison, error)** - check if the string matches the comparison.
- - **contains(seed, error)** - check if the string contains the seed.
- - **matches(pattern [, modifiers], error)** - check if string matches the pattern. Either `matches(/foo/i, error)` or `matches('foo', 'i', error)`.
+ - **equals(error, comparison)** - check if the string matches the comparison.
+ - **contains(error, seed)** - check if the string contains the seed.
+ - **matches(error, pattern [, modifiers])** - check if string matches the pattern. Either `matches(/foo/i)` or `matches('foo', 'i')`.
  - **isEmail(error)** - check if the string is an email.
- - **isURL([options], error)** - check if the string is an URL. `options` is an object which defaults to `{ protocols: ['http','https','ftp'], require_tld: true, require_protocol: false, allow_underscores: false, host_whitelist: false, host_blacklist: false, allow_trailing_dot: false }`.
- - **isFQDN([options], error)** - check if the string is a fully qualified domain name (e.g. domain.com). `options` is an object which defaults to `{ require_tld: true, allow_underscores: false, allow_trailing_dot: false }`.
- - **isIP([version], error)** - check if the string is an IP (version 4 or 6).
+ - **isURL(error, [options])** - check if the string is an URL. `options` is an object which defaults to `{ protocols: ['http','https','ftp'], require_tld: true, require_protocol: false, allow_underscores: false, host_whitelist: false, host_blacklist: false, allow_trailing_dot: false }`.
+ - **isFQDN(error, [options])** - check if the string is a fully qualified domain name (e.g. domain.com). `options` is an object which defaults to `{ require_tld: true, allow_underscores: false, allow_trailing_dot: false }`.
+ - **isIP(error, [version])** - check if the string is an IP (version 4 or 6).
  - **isAlpha(error)** - check if the string contains only letters (a-zA-Z).
  - **isNumeric(error)** - check if the string contains only numbers.
  - **isAlphanumeric(error)** - check if the string contains only letters and numbers.
@@ -128,18 +128,18 @@ The predefined validators are:
  - **isUppercase(error)** - check if the string is uppercase.
  - **isInt(error)** - check if the string is an integer.
  - **isFloat(error)** - check if the string is a float.
- - **isDivisibleBy(number, error)** - check if the string is a number that's divisible by another.
+ - **isDivisibleBy(error, number)** - check if the string is a number that's divisible by another.
  - **isNull(error)** - check if the string is null.
- - **isLength(min [, max], error)** - check if the string's length falls in a range. Note: this function takes into account surrogate pairs.
- - **isByteLength(min [, max], error)** - check if the string's length (in bytes) falls in a range.
- - **isUUID([version], error)** - check if the string is a UUID (version 3, 4 or 5).
+ - **isLength(error, min [, max])** - check if the string's length falls in a range. Note: this function takes into account surrogate pairs.
+ - **isByteLength(error, min [, max])** - check if the string's length (in bytes) falls in a range.
+ - **isUUID(error, [version])** - check if the string is a UUID (version 3, 4 or 5).
  - **isDate(error)** - check if the string is a date.
- - **isAfter([date], error)** - check if the string is a date that's after the specified date (defaults to now).
- - **isBefore([date], error)** - check if the string is a date that's before the specified date.
- - **isIn(values, error)** - check if the string is in a array of allowed values.
+ - **isAfter(error, [date])** - check if the string is a date that's after the specified date (defaults to now).
+ - **isBefore(error, [date])** - check if the string is a date that's before the specified date.
+ - **isIn(error, values)** - check if the string is in a array of allowed values.
  - **isCreditCard(error)** - check if the string is a credit card.
- - **isISBN([version], error)** - check if the string is an ISBN (version 10 or 13).
- - **isMobilePhone([locale], error)** - check if the string is a mobile phone number, (locale should be locales, like 'zh-CN', currently only support 'zh-CN').
+ - **isISBN(error, [version])** - check if the string is an ISBN (version 10 or 13).
+ - **isMobilePhone(error, [locale])** - check if the string is a mobile phone number, (locale should be locales, like 'zh-CN', currently only support 'zh-CN').
  - **isJSON(error)** - check if the string is valid JSON (note: uses JSON.parse).
  - **isMultibyte(error)** - check if the string contains one or more multibyte chars.
  - **isAscii(error)** - check if the string contains ASCII chars only.
