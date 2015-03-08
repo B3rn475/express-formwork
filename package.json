@@ -1,7 +1,7 @@
 {
   "name": "express-formwork",
   "version": "0.1.2",
-  "description": "",
+  "description": "A completely asynchronous form validator and sanitizer for express",
   "keywords": [
     "express",
     "validation"
