@@ -1,10 +1,12 @@
 {
   "name": "express-formwork",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A completely asynchronous form validator and sanitizer for express",
   "keywords": [
     "express",
-    "validation"
+    "validation",
+	"sanitization",
+	"form"
   ],
   "homepage": "https://github.com/B3rn475/express-formwork",
   "author": {
