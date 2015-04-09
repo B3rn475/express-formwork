@@ -111,6 +111,7 @@ Parameters:
  
 The predefined validators are:
 
+ - **isNotEmptyString(error)** - check if the string is empty.
  - **equals(error, comparison)** - check if the string matches the comparison.
  - **contains(error, seed)** - check if the string contains the seed.
  - **matches(error, pattern [, modifiers])** - check if string matches the pattern. Either `matches(/foo/i)` or `matches('foo', 'i')`.
