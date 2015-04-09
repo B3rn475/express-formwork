@@ -243,7 +243,7 @@ describe('field', function () {
                 assert.equal(err, undefined);
                 assert.equal(req.formwork.isValid, true);
                 assert.equal(req.formwork.any.name.error, undefined);
-                assert.equal(req.formwork.any.name.value, '');
+                assert.equal(req.formwork.any.name.value, undefined);
             });
             assert.equal(done, true);
         });
