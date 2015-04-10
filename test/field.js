@@ -387,6 +387,9 @@ describe('field', function () {
             };
         }
         function createResponse() {return {}; }
+        it('should throw an error', function () {
+            assert.throws(field.body('name').isNotEmptyString('error'));
+        });
         it('should set error', function (done) {
             var req = createRequest(),
                 res = createResponse();
