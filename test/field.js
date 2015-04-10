@@ -370,4 +370,38 @@ describe('field', function () {
             assert.equal(field.any("name") instanceof field, true);
         });
     });
+    describe('validators', function () {
+        function createRequest() {
+            return {
+                body : {
+                    name: '',
+                },
+                query : {},
+                params : {},
+                formwork: {
+                    body: {},
+                    query: {},
+                    params: {},
+                    any: {}
+                }
+            };
+        }
+        function createResponse() {return {}; }
+        it('should set error', function (done) {
+            var req = createRequest(),
+                res = createResponse();
+            field.body('name').isNotEmptyString('error').toMiddleware()(req, res, function (err) {
+                assert.equal(req.formwork.any.name.error, 'error');
+                done();
+            });
+        });
+        it('should not set error', function (done) {
+            var req = createRequest(),
+                res = createResponse();
+            field.params('name').isNotEmptyString('error').toMiddleware()(req, res, function (err) {
+                assert.equal(req.formwork.any.name.error, undefined);
+                done();
+            });
+        });
+    });
 });
