@@ -111,44 +111,51 @@ Parameters:
  
 The predefined validators are:
 
- - **isNotEmptyString(error)** - check if the string is empty.
- - **equals(error, comparison)** - check if the string matches the comparison.
- - **contains(error, seed)** - check if the string contains the seed.
- - **matches(error, pattern [, modifiers])** - check if string matches the pattern. Either `matches(/foo/i)` or `matches('foo', 'i')`.
- - **isEmail(error)** - check if the string is an email.
- - **isURL(error, [options])** - check if the string is an URL. `options` is an object which defaults to `{ protocols: ['http','https','ftp'], require_tld: true, require_protocol: false, allow_underscores: false, host_whitelist: false, host_blacklist: false, allow_trailing_dot: false }`.
- - **isFQDN(error, [options])** - check if the string is a fully qualified domain name (e.g. domain.com). `options` is an object which defaults to `{ require_tld: true, allow_underscores: false, allow_trailing_dot: false }`.
- - **isIP(error, [version])** - check if the string is an IP (version 4 or 6).
- - **isAlpha(error)** - check if the string contains only letters (a-zA-Z).
- - **isNumeric(error)** - check if the string contains only numbers.
- - **isAlphanumeric(error)** - check if the string contains only letters and numbers.
- - **isBase64(error)** - check if a string is base64 encoded.
- - **isHexadecimal(error)** - check if the string is a hexadecimal number.
- - **isHexColor(error)** - check if the string is a hexadecimal color.
- - **isLowercase(error)** - check if the string is lowercase.
- - **isUppercase(error)** - check if the string is uppercase.
- - **isInt(error)** - check if the string is an integer.
- - **isFloat(error)** - check if the string is a float.
- - **isDivisibleBy(error, number)** - check if the string is a number that's divisible by another.
- - **isNull(error)** - check if the string is null.
- - **isLength(error, min [, max])** - check if the string's length falls in a range. Note: this function takes into account surrogate pairs.
- - **isByteLength(error, min [, max])** - check if the string's length (in bytes) falls in a range.
- - **isUUID(error, [version])** - check if the string is a UUID (version 3, 4 or 5).
- - **isDate(error)** - check if the string is a date.
- - **isAfter(error, [date])** - check if the string is a date that's after the specified date (defaults to now).
- - **isBefore(error, [date])** - check if the string is a date that's before the specified date.
- - **isIn(error, values)** - check if the string is in a array of allowed values.
- - **isCreditCard(error)** - check if the string is a credit card.
- - **isISBN(error, [version])** - check if the string is an ISBN (version 10 or 13).
- - **isMobilePhone(error, [locale])** - check if the string is a mobile phone number, (locale should be locales, like 'zh-CN', currently only support 'zh-CN').
- - **isJSON(error)** - check if the string is valid JSON (note: uses JSON.parse).
- - **isMultibyte(error)** - check if the string contains one or more multibyte chars.
- - **isAscii(error)** - check if the string contains ASCII chars only.
- - **isFullWidth(error)** - check if the string contains any full-width chars.
- - **isHalfWidth(error)** - check if the string contains any half-width chars.
- - **isVariableWidth(error)** - check if the string contains a mixture of full and half-width chars.
- - **isSurrogatePair(error)** - check if the string contains any surrogate pairs chars.
- - **isMongoId(error)** - check if the string is a valid hex-encoded representation of a [MongoDB ObjectId][mongoid].
+- **contains(error, seed)** - check if the string contains the seed.
+- **equals(error, comparison)** - check if the string matches the comparison.
+- **isAfter(str [, date])** - check if the string is a date that's after the specified date (defaults to now).
+- **isAlpha(error)** - check if the string contains only letters (a-zA-Z).
+- **isAlphanumeric(error)** - check if the string contains only letters and numbers.
+- **isAscii(error)** - check if the string contains ASCII chars only.
+- **isBase64(error)** - check if a string is base64 encoded.
+- **isBefore(str [, date])** - check if the string is a date that's before the specified date.
+- **isBoolean(error)** - check if a string is a boolean.
+- **isByteLength(error, options)** - check if the string's length (in bytes) falls in a range.`options` is an object which defaults to `{min:0, max: undefined}`.
+- **isCreditCard(error)** - check if the string is a credit card.
+- **isCurrency(error, options)** - check if the string is a valid currency amount. `options` is an object which defaults to `{symbol: '$', require_symbol: false, allow_space_after_symbol: false, symbol_after_digits: false, allow_negatives: true, parens_for_negatives: false, negative_sign_before_digits: false, negative_sign_after_digits: false, allow_negative_sign_placeholder: false, thousands_separator: ',', decimal_separator: '.', allow_space_after_digits: false }`.
+- **isDate(error)** - check if the string is a date.
+- **isDecimal(error)** - check if the string represents a decimal number, such as 0.1, .3, 1.1, 1.00003, 4.0, etc.
+- **isDivisibleBy(error, number)** - check if the string is a number that's divisible by another.
+- **isEmail(str [, options])** - check if the string is an email. `options` is an object which defaults to `{ allow_display_name: false, allow_utf8_local_part: true, require_tld: true }`. If `allow_display_name` is set to true, the validator will also match `Display Name <email-address>`. If `allow_utf8_local_part` is set to false, the validator will not allow any non-English UTF8 character in email address' local part. If `require_tld` is set to false, e-mail addresses without having TLD in their domain will also be matched.
+- **isFQDN(str [, options])** - check if the string is a fully qualified domain name (e.g. domain.com). `options` is an object which defaults to `{ require_tld: true, allow_underscores: false, allow_trailing_dot: false }`.
+- **isFloat(str [, options])** - check if the string is a float. `options` is an object which can contain the keys `min` and/or `max` to validate the float is within boundaries (e.g. `{ min: 7.22, max: 9.55 }`).
+- **isFullWidth(error)** - check if the string contains any full-width chars.
+- **isHalfWidth(error)** - check if the string contains any half-width chars.
+- **isHexColor(error)** - check if the string is a hexadecimal color.
+- **isHexadecimal(error)** - check if the string is a hexadecimal number.
+- **isIP(str [, version])** - check if the string is an IP (version 4 or 6).
+- **isISBN(str [, version])** - check if the string is an ISBN (version 10 or 13).
+- **isISIN(error)** - check if the string is an [ISIN][ISIN] (stock/security identifier).
+- **isISO8601(error)** - check if the string is a valid [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date.
+- **isIn(error, values)** - check if the string is in a array of allowed values.
+- **isInt(str [, options])** - check if the string is an integer. `options` is an object which can contain the keys `min` and/or `max` to check the integer is within boundaries (e.g. `{ min: 10, max: 99 }`).
+- **isJSON(error)** - check if the string is valid JSON (note: uses JSON.parse).
+- **isLength(error, options)** - check if the string's length falls in a range. `options` is an object which defaults to `{min:0, max: undefined}`. Note: this function takes into account surrogate pairs.
+- **isLowercase(error)** - check if the string is lowercase.
+- **isMACAddress(error)** - check if the string is a MAC address.
+- **isMobilePhone(error, locale)** - check if the string is a mobile phone number, (locale is one of `['zh-CN', 'zh-TW', 'en-ZA', 'en-AU', 'en-HK', 'pt-PT', 'fr-FR', 'el-GR', 'en-GB', 'en-US', 'en-ZM', 'ru-RU', 'nb-NO', 'nn-NO', 'vi-VN', 'en-NZ', 'en-IN']`).
+- **isMongoId(error)** - check if the string is a valid hex-encoded representation of a [MongoDB ObjectId][mongoid].
+- **isMultibyte(error)** - check if the string contains one or more multibyte chars.
+- **isNull(error)** - check if the string is null.
+- **isNumeric(error)** - check if the string contains only numbers.
+- **isSurrogatePair(error)** - check if the string contains any surrogate pairs chars.
+- **isURL(str [, options])** - check if the string is an URL. `options` is an object which defaults to `{ protocols: ['http','https','ftp'], require_tld: true, require_protocol: false, require_valid_protocol: true, allow_underscores: false, host_whitelist: false, host_blacklist: false, allow_trailing_dot: false, allow_protocol_relative_urls: false }`.
+- **isUUID(str [, version])** - check if the string is a UUID (version 3, 4 or 5).
+- **isUppercase(error)** - check if the string is uppercase.
+- **isVariableWidth(error)** - check if the string contains a mixture of full and half-width chars.
+- **isWhitelisted(error, chars)** - checks characters if they appear in the whitelist.
+- **matches(error, pattern [, modifiers])** - check if string matches the pattern. Either `matches('foo', /foo/i)` or `matches('foo', 'foo', 'i')`.
+
  
  For further informations on the predefined validators see [validator](https://github.com/chriso/validator.js)
  
@@ -169,19 +176,19 @@ function (value, callback, formwork, req, res) {
 
 The predefined sanitiers are:
  
- - **toString()** - convert the input to a string.
- - **toDate()** - convert the input to a date, or `null` if the input is not a date.
- - **toFloat()** - convert the input to a float, or `NaN` if the input is not a float.
- - **toInt([radix])** - convert the input to an integer, or `NaN` if the input is not an integer.
- - **toBoolean([strict])** - convert the input to a boolean. Everything except for `'0'`, `'false'` and `''` returns `true`. In strict mode only `'1'` and `'true'` return  `true`.
- - **trim([chars])** - trim characters (whitespace by default) from both sides of the input.
- - **ltrim([chars])** - trim characters from the left-side of the input.
- - **rtrim([chars])** - trim characters from the right-side of the input.
- - **escape()** - replace `<`, `>`, `&`, `'`, `"` and `/` with HTML entities. 
- - **stripLow([keep_new_lines])** - remove characters with a numerical value < 32 and 127, mostly control characters. If `keep_new_lines` is `true`, newline characters are preserved (`\n` and `\r`, hex `0xA` and `0xD`). Unicode-safe in JavaScript.
- - **whitelist(chars)** - remove characters that do not appear in the whitelist. The characters are used in a RegExp and so you will need to escape some chars, e.g. whitelist('\\[\\]').
- - **blacklist(chars)** - remove characters that appear in the blacklist. The characters are used in a RegExp and so you will need to escape some chars, e.g. blacklist('\\[\\]').
- - **normalizeEmail([options])** - canonicalize an email address. `options` is an object which defaults to `{ lowercase: true }`. With `lowercase` set to `true`, the local part of the email address is lowercased for all domains; the hostname is always lowercased and the local part of the email address is always lowercased for hosts that are known to be case-insensitive (currently only GMail). Normalization follows special rules for known providers: currently, GMail addresses have dots removed in the local part and are stripped of tags (e.g. `some.one+tag@gmail.com` becomes `someone@gmail.com`) and all `@googlemail.com` addresses are normalized to `@gmail.com`.
+- **blacklist(chars)** - remove characters that appear in the blacklist. The characters are used in a RegExp and so you will need to escape some chars, e.g. `blacklist('\\[\\]')`.
+- **escape()** - replace `<`, `>`, `&`, `'`, `"` and `/` with HTML entities.
+- **ltrim([, chars])** - trim characters from the left-side of the input.
+- **normalizeEmail(email [, options])** - canonicalize an email address. `options` is an object which defaults to `{ lowercase: true, remove_dots: true, remove_extension: true }`. With `lowercase` set to `true`, the local part of the email address is lowercased for all domains; the hostname is always lowercased and the local part of the email address is always lowercased for hosts that are known to be case-insensitive (currently only GMail). Normalization follows special rules for known providers: currently, GMail addresses have dots removed in the local part and are stripped of extensions (e.g. `some.one+extension@gmail.com` becomes `someone@gmail.com`) and all `@googlemail.com` addresses are normalized to `@gmail.com`.
+- **rtrim([, chars])** - trim characters from the right-side of the input.
+- **stripLow([, keep_new_lines])** - remove characters with a numerical value < 32 and 127, mostly control characters. If `keep_new_lines` is `true`, newline characters are preserved (`\n` and `\r`, hex `0xA` and `0xD`). Unicode-safe in JavaScript.
+- **toBoolean([, strict])** - convert the input to a boolean. Everything except for `'0'`, `'false'` and `''` returns `true`. In strict mode only `'1'` and `'true'` return `true`.
+- **toDate()** - convert the input to a date, or `null` if the input is not a date.
+- **toFloat()** - convert the input to a float, or `NaN` if the input is not a float.
+- **toInt([, radix])** - convert the input to an integer, or `NaN` if the input is not an integer.
+- **toString()** - convert the input to a string.
+- **trim([, chars])** - trim characters (whitespace by default) from both sides of the input.
+- **whitelist(chars)** - remove characters that do not appear in the whitelist. The characters are used in a RegExp and so you will need to escape some chars, e.g. `whitelist('\\[\\]')`.
 
 For further informations on the predefined sanitizers see [validator](https://github.com/chriso/validator.js)
 
