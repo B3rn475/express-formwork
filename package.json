@@ -1,6 +1,6 @@
 {
   "name": "express-formwork",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A completely asynchronous form validator and sanitizer for express",
   "keywords": [
     "express",
@@ -13,6 +13,7 @@
     "name": "Carlo BERNASCHINA",
     "url": "http://www.bernaschina.com/"
   },
+  "license": "MIT",
   "licenses": {
     "type": "MIT",
     "url": "http://github.com/B3rn475/express-formwork/raw/master/LICENSE"
@@ -22,7 +23,7 @@
     "url": "http://github.com/B3rn475/express-formwork.git"
   },
   "dependencies": {
-    "validator": "^4.0.5"
+    "validator": "^4.5.0"
   },
   "devDependencies": {
     "async": "^1.4.2",
@@ -31,7 +32,7 @@
     "coveralls": "latest"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.6.0"
   },
   "scripts": {
     "test": "mocha",
