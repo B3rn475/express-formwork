@@ -23,7 +23,7 @@
     "url": "http://github.com/B3rn475/express-formwork.git"
   },
   "dependencies": {
-    "validator": "^6.0.0"
+    "validator": "^12.1.0"
   },
   "devDependencies": {
     "async": "^1.4.2",
